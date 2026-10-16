@@ -3,6 +3,7 @@ import { createHmac, randomInt, timingSafeEqual } from "node:crypto";
 import { db } from "./db";
 import { getSmsProvider } from "./sms";
 import { ApiError } from "./api";
+import { DEMO_OTP } from "./demo-otp";
 
 export const OTP_LENGTH = 6;
 export const OTP_TTL_SECONDS = 5 * 60;
@@ -10,8 +11,6 @@ export const OTP_RESEND_SECONDS = 30;
 const MAX_ATTEMPTS = 5;
 const MAX_SENDS_PER_HOUR = 5;
 
-/** Development only: the code is always 123456 (and is logged). */
-export const DEV_OTP = "123456";
 const isDev = process.env.NODE_ENV !== "production";
 
 function hash(phone: string, code: string) {
@@ -33,11 +32,17 @@ export async function sendOtp(phone: string) {
     throw new ApiError(429, "Too many codes requested. Try again in an hour.", "RATE_LIMITED");
   }
 
-  const code = isDev ? DEV_OTP : String(randomInt(0, 10 ** OTP_LENGTH)).padStart(OTP_LENGTH, "0");
-  await db.otpRequest.create({
+  const code = DEMO_OTP ?? String(randomInt(0, 10 ** OTP_LENGTH)).padStart(OTP_LENGTH, "0");
+  const otp = await db.otpRequest.create({
     data: { phone, codeHash: hash(phone, code), expiresAt: new Date(now + OTP_TTL_SECONDS * 1000) },
   });
-  await getSmsProvider().sendOtp(phone, code);
+  try {
+    await getSmsProvider().sendOtp(phone, code);
+  } catch (err) {
+    // Don't let a failed send count towards the resend wait or hourly limit.
+    await db.otpRequest.delete({ where: { id: otp.id } });
+    throw err;
+  }
   return { resendIn: OTP_RESEND_SECONDS };
 }
 

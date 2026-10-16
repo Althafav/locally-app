@@ -58,4 +58,4 @@ Run `npm run seed` after editing any of these. Once availability exists, the see
 
 ## Environment
 
-Copy `.env.example` to `.env`. It needs `DATABASE_URL` (a Prisma Postgres `postgres://` connection string), `JWT_SECRET` and `SMS_PROVIDER=console`. The MSG91 and Twilio providers in `lib/sms.ts` are stubs. `.env` is gitignored.
+Copy `.env.example` to `.env`. It needs `DATABASE_URL` (a Prisma Postgres `postgres://` connection string), `JWT_SECRET` and `SMS_PROVIDER=console`. `SMS_PROVIDER=msg91` sends real SMS (needs `MSG91_AUTH_KEY` and `MSG91_TEMPLATE_ID`); Twilio is a stub. `NEXT_PUBLIC_DEMO_OTP` (see `lib/demo-otp.ts`) makes production accept a fixed code. `.env` is gitignored.

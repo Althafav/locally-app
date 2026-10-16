@@ -1,4 +1,6 @@
 import "server-only";
+import { ApiError } from "./api";
+import { OTP_TTL_SECONDS } from "./otp";
 
 /**
  * SMS provider interface. The MVP ships with a console provider that logs
@@ -17,13 +19,36 @@ class ConsoleSmsProvider implements SmsProvider {
   }
 }
 
-// Sketch for later: MSG91 OTP API (needs a DLT-approved template in India).
+/**
+ * MSG91 OTP API (v5). Needs MSG91_AUTH_KEY and MSG91_TEMPLATE_ID; the template
+ * must be DLT-approved and contain the ##OTP## variable. We generate and verify
+ * the code ourselves, so MSG91 only delivers it.
+ */
 class Msg91SmsProvider implements SmsProvider {
   readonly name = "msg91";
-  async sendOtp(_phone: string, _code: string) {
-    // TODO: POST https://control.msg91.com/api/v5/otp with
-    // authkey=MSG91_AUTH_KEY, template_id=MSG91_TEMPLATE_ID, mobile, otp
-    throw new Error("MSG91 provider not implemented yet");
+  async sendOtp(phone: string, code: string) {
+    const authKey = process.env.MSG91_AUTH_KEY;
+    const templateId = process.env.MSG91_TEMPLATE_ID;
+    if (!authKey || !templateId) throw new Error("MSG91_AUTH_KEY and MSG91_TEMPLATE_ID must be set");
+
+    // `phone` is already "91XXXXXXXXXX", the format MSG91 expects.
+    const url = new URL("https://control.msg91.com/api/v5/otp");
+    url.searchParams.set("template_id", templateId);
+    url.searchParams.set("mobile", phone);
+    url.searchParams.set("otp", code);
+    url.searchParams.set("otp_expiry", String(OTP_TTL_SECONDS / 60));
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { authkey: authKey, "content-type": "application/json" },
+      body: "{}",
+      signal: AbortSignal.timeout(10_000),
+    });
+    const data = (await res.json().catch(() => ({}))) as { type?: string; message?: string };
+    if (!res.ok || data.type !== "success") {
+      console.error(`[sms:msg91] send failed (${res.status}):`, data.message ?? data);
+      throw new ApiError(502, "We couldn't send the code right now. Please try again.", "SMS_FAILED");
+    }
   }
 }
 

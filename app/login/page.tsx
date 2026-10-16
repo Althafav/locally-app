@@ -6,6 +6,7 @@ import { ChevronLeft } from "lucide-react";
 import { Loader, PageLoader } from "@/components/Loader";
 import { LogoMark } from "@/components/Logo";
 import { api, FetchError } from "@/lib/client";
+import { DEMO_OTP } from "@/lib/demo-otp";
 import { t } from "@/lib/i18n";
 import { INDIAN_MOBILE } from "@/lib/phone";
 
@@ -185,8 +186,10 @@ function Login() {
               </button>
             )}
           </div>
-          {process.env.NODE_ENV !== "production" && (
-            <p className="mt-4 rounded-lg bg-white px-3 py-2 text-xs text-ink-soft ring-1 ring-line">{t.login.devHint}</p>
+          {DEMO_OTP && (
+            <p className="mt-4 rounded-lg bg-white px-3 py-2 text-xs text-ink-soft ring-1 ring-line">
+              {t.login.demoHint(DEMO_OTP)}
+            </p>
           )}
 
           <div className="flex-1" />

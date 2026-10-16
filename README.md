@@ -39,11 +39,12 @@ Other scripts: `npm run typecheck`, `npm run build`, `npm run db:reset` (wipe + 
   stores an **HMAC hash** of the code in `OtpRequest` (5-minute expiry) and hands it to the SMS provider.
 - In development (`NODE_ENV !== "production"`) the code is always **`123456`**, and the console provider
   prints it to the server terminal: `[sms:console] OTP for +919876543210: 123456`.
+- In production, set `NEXT_PUBLIC_DEMO_OTP=123456` to use a fixed code there too (demo mode; anyone can
+  log in as any number). Unset it once real SMS works.
 - `POST /api/auth/verify-otp` allows 5 attempts per code, then creates the user if new and sets an
   httpOnly `locally_session` JWT cookie (30 days).
-- To send real SMS, implement `SmsProvider` in [`lib/sms.ts`](lib/sms.ts) (MSG91 and Twilio stubs are there)
-  and set `SMS_PROVIDER=msg91` (or `twilio`) plus the provider credentials. In India, MSG91 needs a
-  DLT-registered template.
+- To send real SMS, set `SMS_PROVIDER=msg91`, `MSG91_AUTH_KEY` and `MSG91_TEMPLATE_ID` (a DLT-registered
+  OTP template containing `##OTP##`). Twilio in [`lib/sms.ts`](lib/sms.ts) is still a stub.
 
 ## Route guard
 

@@ -25,7 +25,7 @@ export const en = {
     verify: "Verify",
     resendIn: (s: number) => `Resend code in ${s}s`,
     resend: "Resend code",
-    devHint: "Dev mode: use 123456",
+    demoHint: (code: string) => `Demo mode: use ${code}`,
   },
   setup: {
     title: "What should we call you?",
