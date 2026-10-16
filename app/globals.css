@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    background: #e9ebef;
+  }
+  body {
+    @apply bg-paper text-ink antialiased;
+  }
+  /* iOS zooms inputs under 16px */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full px-6 text-[15px] font-bold transition active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-white shadow-cta hover:bg-accent-dark;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-ink shadow-card ring-1 ring-line hover:bg-gray-50;
+  }
+  .btn-ghost {
+    @apply btn text-ink-soft hover:bg-black/5;
+  }
+  .field {
+    @apply w-full rounded-2xl border border-line bg-white px-4 py-3.5 text-ink outline-none transition placeholder:text-ink-faint focus:border-accent focus:ring-4 focus:ring-accent/15;
+  }
+  .label {
+    @apply mb-1.5 block text-[13px] font-semibold text-ink-soft;
+  }
+  /* Elevated surface on the grey page. */
+  .card {
+    @apply rounded-2xl bg-white shadow-card;
+  }
+  /* Bordered surface for dense lists and tables (admin). */
+  .card-flat {
+    @apply rounded-2xl border border-line bg-white;
+  }
+  .skeleton {
+    @apply animate-pulse rounded-lg bg-gray-200/80;
+  }
+  .chip {
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-full border px-4 text-sm font-semibold transition;
+  }
+}
+
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Motion loader (components/Loader.tsx) */
+.loader-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: loader-dot 900ms cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes loader-dot {
+  0%, 60%, 100% { transform: translateY(0) scale(0.8); opacity: 0.45; }
+  30% { transform: translateY(-30%) scale(1); opacity: 1; }
+}
+
+.loader-pin {
+  transform-origin: 50% 100%;
+  animation: loader-pin 1.1s cubic-bezier(0.33, 0, 0.2, 1) infinite;
+}
+@keyframes loader-pin {
+  0%   { transform: translateY(0) scale(1.12, 0.86); }
+  12%  { transform: translateY(0) scale(0.94, 1.08); }
+  45%  { transform: translateY(-22px) scale(1, 1); animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.4); }
+  88%  { transform: translateY(0) scale(0.96, 1.05); }
+  100% { transform: translateY(0) scale(1.12, 0.86); }
+}
+
+.loader-shadow {
+  animation: loader-shadow 1.1s cubic-bezier(0.33, 0, 0.2, 1) infinite;
+}
+@keyframes loader-shadow {
+  0%, 100% { transform: scaleX(1.15); opacity: 1; }
+  45% { transform: scaleX(0.55); opacity: 0.4; }
+}
+
+.loader-ripple {
+  animation: loader-ripple 1.1s ease-out infinite;
+}
+@keyframes loader-ripple {
+  0%  { transform: scale(0.3); opacity: 0.9; }
+  70%, 100% { transform: scale(1.5); opacity: 0; }
+}
+
+.loader-label {
+  animation: loader-label 1.6s ease-in-out infinite;
+}
+@keyframes loader-label {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-pin,
+  .loader-shadow,
+  .loader-ripple {
+    animation: none;
+  }
+  .loader-dot {
+    animation-duration: 1.8s;
+  }
+}
+
+/* Sections reached from a sticky JumpBar land below the header (56px) and the bar itself. */
+.jump-section {
+  scroll-margin-top: 124px;
+}

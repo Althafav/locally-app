@@ -1,0 +1,149 @@
+{
+  "_comment": "Prices in whole rupees. `icon` maps to components/ServiceIcon.tsx. Malayalam names to be reviewed by a native speaker.",
+  "categories": [
+    {
+      "id": "cleaning", "name": "Home cleaning", "nameMl": "വീട് വൃത്തിയാക്കൽ", "icon": "cleaning",
+      "services": [
+        { "id": "regular-cleaning", "name": "Regular home cleaning", "nameMl": "സാധാരണ ക്ലീനിംഗ്", "basePrice": 499, "durationMins": 120,
+          "description": "Sweeping, mopping, dusting and tidying for a lived-in home. Great as a weekly visit.",
+          "inclusions": ["Sweeping and mopping all rooms", "Dusting surfaces and furniture", "Bed making and tidying", "Bins emptied"] },
+        { "id": "deep-cleaning", "name": "Deep cleaning", "nameMl": "ഡീപ് ക്ലീനിംഗ്", "basePrice": 2499, "durationMins": 300,
+          "description": "Top-to-bottom clean before a festival, a move or a family function. Two cleaners with machines.",
+          "inclusions": ["Floor scrubbing with machine", "Fans, windows and grills", "Kitchen and bathrooms deep clean", "Cobweb removal"] },
+        { "id": "bathroom-cleaning", "name": "Bathroom cleaning", "nameMl": "ബാത്ത്റൂം ക്ലീനിംഗ്", "basePrice": 399, "durationMins": 60,
+          "description": "Stain and hard-water scale removal for one bathroom.",
+          "inclusions": ["Tiles and floor scrubbing", "Toilet, wash basin and taps", "Mirror and fittings", "Drain cleaning"] },
+        { "id": "kitchen-cleaning", "name": "Kitchen cleaning", "nameMl": "അടുക്കള ക്ലീനിംഗ്", "basePrice": 799, "durationMins": 120,
+          "description": "Degreasing of slab, tiles, chimney exterior and cabinets.",
+          "inclusions": ["Slab and wall tiles degreasing", "Sink and taps", "Cabinet exteriors", "Chimney and stove exterior"] }
+      ]
+    },
+    {
+      "id": "electrician", "name": "Electrician", "nameMl": "ഇലക്ട്രീഷ്യൻ", "icon": "electrician",
+      "services": [
+        { "id": "electrical-repair", "name": "Electrical repair visit", "nameMl": "ഇലക്ട്രിക്കൽ റിപ്പയർ", "basePrice": 199, "durationMins": 45,
+          "description": "A licensed electrician inspects and fixes switches, sockets, lights or tripping issues. Parts extra.",
+          "inclusions": ["Inspection and diagnosis", "Minor repairs up to 45 mins", "Safety check of the fault area"] },
+        { "id": "fan-installation", "name": "Fan installation", "nameMl": "ഫാൻ ഫിറ്റിംഗ്", "basePrice": 249, "durationMins": 45,
+          "description": "Install or replace a ceiling or wall fan, including regulator connection.",
+          "inclusions": ["Fan mounting", "Regulator connection", "Test run"] },
+        { "id": "inverter-wiring", "name": "Inverter & wiring check", "nameMl": "ഇൻവെർട്ടർ & വയറിംഗ്", "basePrice": 349, "durationMins": 60,
+          "description": "Inverter connection, battery check and house wiring inspection.",
+          "inclusions": ["Inverter and battery check", "Load connection review", "Wiring inspection report"] }
+      ]
+    },
+    {
+      "id": "plumber", "name": "Plumber", "nameMl": "പ്ലംബർ", "icon": "plumber",
+      "services": [
+        { "id": "leak-repair", "name": "Leak repair", "nameMl": "ചോർച്ച റിപ്പയർ", "basePrice": 249, "durationMins": 45,
+          "description": "Fix leaking taps, pipes and flush tanks. Parts extra.",
+          "inclusions": ["Leak diagnosis", "Washer / joint replacement", "Pressure test"] },
+        { "id": "tap-fitting", "name": "Tap & fitting installation", "nameMl": "ടാപ്പ് ഫിറ്റിംഗ്", "basePrice": 199, "durationMins": 45,
+          "description": "Install taps, showers, health faucets or wash basin fittings.",
+          "inclusions": ["Removal of old fitting", "Installation and sealing", "Leak test"] },
+        { "id": "motor-repair", "name": "Water motor repair", "nameMl": "മോട്ടോർ റിപ്പയർ", "basePrice": 449, "durationMins": 90,
+          "description": "Diagnosis and repair of open-well or borewell pump motors.",
+          "inclusions": ["Motor and starter check", "Priming and foot-valve check", "Minor repairs"] }
+      ]
+    },
+    {
+      "id": "ac", "name": "AC service & repair", "nameMl": "എസി സർവീസ്", "icon": "ac",
+      "services": [
+        { "id": "ac-service", "name": "AC service", "nameMl": "എസി സർവീസ്", "basePrice": 599, "durationMins": 60,
+          "description": "Jet-wash of indoor and outdoor units for better cooling and lower bills.",
+          "inclusions": ["Filter and coil jet-wash", "Drain pipe cleaning", "Gas pressure check"] },
+        { "id": "ac-repair", "name": "AC repair", "nameMl": "എസി റിപ്പയർ", "basePrice": 499, "durationMins": 60,
+          "description": "Not cooling, leaking water or making noise? A technician diagnoses and fixes it. Parts and gas extra.",
+          "inclusions": ["Diagnosis", "Minor repairs", "Quote for parts / gas refill"] },
+        { "id": "ac-installation", "name": "AC installation", "nameMl": "എസി ഇൻസ്റ്റലേഷൻ", "basePrice": 1499, "durationMins": 150,
+          "description": "Split AC installation with standard 3 m copper piping.",
+          "inclusions": ["Indoor and outdoor unit mounting", "Up to 3 m piping", "Vacuum and test run"] }
+      ]
+    },
+    {
+      "id": "appliance", "name": "Appliance repair", "nameMl": "ഉപകരണ റിപ്പയർ", "icon": "appliance",
+      "services": [
+        { "id": "washing-machine-repair", "name": "Washing machine repair", "nameMl": "വാഷിംഗ് മെഷീൻ റിപ്പയർ", "basePrice": 399, "durationMins": 60,
+          "description": "Top-load and front-load machines: not spinning, not draining, noise or error codes. Parts extra.",
+          "inclusions": ["Diagnosis", "Minor repairs", "Quote for parts"] },
+        { "id": "fridge-repair", "name": "Fridge repair", "nameMl": "ഫ്രിഡ്ജ് റിപ്പയർ", "basePrice": 449, "durationMins": 60,
+          "description": "Single and double door fridges: not cooling, ice build-up, noise. Parts and gas extra.",
+          "inclusions": ["Diagnosis", "Minor repairs", "Quote for parts / gas refill"] }
+      ]
+    },
+    {
+      "id": "painting", "name": "Painting", "nameMl": "പെയിന്റിംഗ്", "icon": "painting",
+      "services": [
+        { "id": "room-painting", "name": "Room painting", "nameMl": "മുറി പെയിന്റിംഗ്", "basePrice": 2999, "durationMins": 480,
+          "description": "Interior repaint of one room (up to 12 x 12 ft) with two coats. Paint charged separately.",
+          "inclusions": ["Furniture covering", "Surface sanding and putty touch-up", "Two coats", "Clean-up"] },
+        { "id": "wall-touchup", "name": "Wall touch-up", "nameMl": "ടച്ച്-അപ്പ്", "basePrice": 999, "durationMins": 180,
+          "description": "Fix damp patches, cracks and marks on a wall before guests arrive.",
+          "inclusions": ["Crack filling", "Patch priming", "Matching top coat"] }
+      ]
+    },
+    {
+      "id": "carpentry", "name": "Carpentry", "nameMl": "മരപ്പണി", "icon": "carpentry",
+      "services": [
+        { "id": "furniture-repair", "name": "Furniture repair", "nameMl": "ഫർണിച്ചർ റിപ്പയർ", "basePrice": 299, "durationMins": 60,
+          "description": "Loose joints, broken hinges, drawer channels and wobbly furniture.",
+          "inclusions": ["Inspection", "Joint and hinge repairs", "Minor parts fitting"] },
+        { "id": "door-lock", "name": "Door & lock fitting", "nameMl": "വാതിൽ & പൂട്ട്", "basePrice": 349, "durationMins": 60,
+          "description": "Door alignment, lock and latch installation or replacement.",
+          "inclusions": ["Door planing / alignment", "Lock or latch fitting", "Function check"] }
+      ]
+    },
+    {
+      "id": "pest", "name": "Pest control", "nameMl": "കീടനിയന്ത്രണം", "icon": "pest",
+      "services": [
+        { "id": "general-pest", "name": "General pest control", "nameMl": "പൊതു കീടനിയന്ത്രണം", "basePrice": 999, "durationMins": 90,
+          "description": "Cockroach, ant and spider treatment using odourless, family-safe chemicals.",
+          "inclusions": ["Kitchen gel treatment", "Spray in corners and drains", "30-day re-service guarantee"] },
+        { "id": "termite-treatment", "name": "Termite treatment", "nameMl": "ചിതൽ നിയന്ത്രണം", "basePrice": 2499, "durationMins": 180,
+          "description": "Drill-fill-seal treatment for active termite infestations.",
+          "inclusions": ["Inspection", "Drill-fill-seal on affected areas", "Wood treatment"] }
+      ]
+    },
+    {
+      "id": "coconut", "name": "Coconut tree climbing", "nameMl": "തെങ്ങുകയറ്റം", "icon": "coconut",
+      "services": [
+        { "id": "coconut-harvest", "name": "Coconut harvesting", "nameMl": "തേങ്ങയിടൽ", "basePrice": 400, "durationMins": 90,
+          "description": "Trained climber harvests ripe coconuts. Price covers up to 10 trees.",
+          "inclusions": ["Up to 10 trees", "Harvest of ripe bunches", "Dry fronds removed"] },
+        { "id": "tree-cleaning", "name": "Tree cleaning & spraying", "nameMl": "തെങ്ങ് വൃത്തിയാക്കൽ", "basePrice": 600, "durationMins": 120,
+          "description": "Crown cleaning and pest spray (rhinoceros beetle, red palm weevil) for up to 10 trees.",
+          "inclusions": ["Crown cleaning", "Pest inspection", "Preventive spray"] }
+      ]
+    },
+    {
+      "id": "well", "name": "Well cleaning", "nameMl": "കിണർ വൃത്തിയാക്കൽ", "icon": "well",
+      "services": [
+        { "id": "well-cleaning", "name": "Well cleaning", "nameMl": "കിണർ വൃത്തിയാക്കൽ", "basePrice": 2500, "durationMins": 300,
+          "description": "Dewatering, silt removal and wall scrubbing for open wells up to 40 ft. Best done before the monsoon.",
+          "inclusions": ["Pumping out water", "Silt and debris removal", "Wall scrubbing", "Chlorination"] },
+        { "id": "well-chlorination", "name": "Well chlorination", "nameMl": "ക്ലോറിനേഷൻ", "basePrice": 500, "durationMins": 60,
+          "description": "Measured bleaching-powder chlorination after floods or contamination.",
+          "inclusions": ["Dose calculation", "Chlorination", "Usage advice"] }
+      ]
+    },
+    {
+      "id": "gardening", "name": "Gardening", "nameMl": "പൂന്തോട്ടപരിപാലനം", "icon": "gardening",
+      "services": [
+        { "id": "garden-maintenance", "name": "Garden maintenance", "nameMl": "ഗാർഡൻ പരിപാലനം", "basePrice": 499, "durationMins": 120,
+          "description": "Weeding, pruning, manuring and general upkeep of a home garden.",
+          "inclusions": ["Weeding", "Pruning and shaping", "Manure application"] },
+        { "id": "grass-cutting", "name": "Grass cutting", "nameMl": "പുല്ല് വെട്ടൽ", "basePrice": 399, "durationMins": 90,
+          "description": "Brush-cutter grass clearing for compounds up to 10 cents.",
+          "inclusions": ["Brush-cutter clearing", "Edges trimmed", "Cuttings gathered"] }
+      ]
+    },
+    {
+      "id": "tank", "name": "Water tank cleaning", "nameMl": "വാട്ടർ ടാങ്ക് ക്ലീനിംഗ്", "icon": "tank",
+      "services": [
+        { "id": "tank-cleaning", "name": "Water tank cleaning", "nameMl": "വാട്ടർ ടാങ്ക് ക്ലീനിംഗ്", "basePrice": 799, "durationMins": 90,
+          "description": "Overhead or sump tank up to 2000 L: draining, scrubbing, sludge removal and disinfection.",
+          "inclusions": ["Draining", "Sludge removal", "Wall scrubbing", "Disinfection"] }
+      ]
+    }
+  ]
+}

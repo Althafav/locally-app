@@ -1,0 +1,51 @@
+{
+  "_comment": [
+    "Launch availability per local body. Deliberately uneven so switching location visibly changes the catalogue.",
+    "CORPORATION: every active service.",
+    "MUNICIPALITY: every service except `municipalityExcept` + any per-municipality exclusions.",
+    "GRAMA_PANCHAYAT: only the services listed under `panchayats`. A panchayat that is not listed has nothing yet (shows the 'not here yet' empty state).",
+    "priceOverrides: effective price for that service in that local body (otherwise Service.basePrice)."
+  ],
+  "municipalityExcept": ["ac-installation", "termite-treatment"],
+  "municipalityExtraExcept": {
+    "kannur.iritty": ["deep-cleaning", "ac-service", "ac-repair", "room-painting"],
+    "kannur.sreekandapuram": ["deep-cleaning", "ac-repair", "general-pest", "kitchen-cleaning"],
+    "kannur.panoor": ["room-painting", "wall-touchup", "inverter-wiring"],
+    "kannur.anthoor": ["well-cleaning", "grass-cutting"]
+  },
+  "panchayats": {
+    "kannur.azhikode": ["regular-cleaning", "electrical-repair", "leak-repair", "coconut-harvest", "tank-cleaning"],
+    "kannur.chirakkal": ["regular-cleaning", "bathroom-cleaning", "electrical-repair", "ac-service", "coconut-harvest"],
+    "kannur.pappinisseri": ["regular-cleaning", "leak-repair", "coconut-harvest", "well-cleaning"],
+    "kannur.kalliasseri": ["electrical-repair", "coconut-harvest", "well-cleaning"],
+    "kannur.valapattanam": ["regular-cleaning", "electrical-repair", "leak-repair"],
+    "kannur.narath": ["coconut-harvest", "tree-cleaning", "well-cleaning", "grass-cutting"],
+    "kannur.kolachery": ["electrical-repair", "coconut-harvest", "garden-maintenance"],
+    "kannur.mayyil": ["regular-cleaning", "electrical-repair", "motor-repair", "coconut-harvest", "well-cleaning"],
+    "kannur.munderi": ["leak-repair", "coconut-harvest", "grass-cutting"],
+    "kannur.chembilode": ["electrical-repair", "coconut-harvest", "tank-cleaning"],
+    "kannur.peralassery": ["regular-cleaning", "electrical-repair", "coconut-harvest", "well-cleaning"],
+    "kannur.kadambur": ["regular-cleaning", "leak-repair", "fan-installation"],
+    "kannur.muzhappilangad": ["regular-cleaning", "ac-service", "leak-repair", "coconut-harvest"],
+    "kannur.dharmadam": ["regular-cleaning", "bathroom-cleaning", "electrical-repair", "leak-repair", "coconut-harvest"],
+    "kannur.pinarayi": ["regular-cleaning", "electrical-repair", "motor-repair", "coconut-harvest", "well-cleaning"],
+    "kannur.vengad": ["electrical-repair", "coconut-harvest", "tree-cleaning"],
+    "kannur.anjarakandy": ["regular-cleaning", "leak-repair", "coconut-harvest", "garden-maintenance"],
+    "kannur.eranholi": ["regular-cleaning", "electrical-repair", "tank-cleaning"],
+    "kannur.panniyannur": ["coconut-harvest", "well-cleaning", "grass-cutting"],
+    "kannur.cheruthazham": ["regular-cleaning", "electrical-repair", "coconut-harvest", "well-cleaning"],
+    "kannur.madayi": ["regular-cleaning", "leak-repair", "ac-service", "coconut-harvest"],
+    "kannur.kannapuram": ["electrical-repair", "coconut-harvest", "tank-cleaning"],
+    "kannur.pariyaram": ["regular-cleaning", "electrical-repair", "leak-repair", "fan-installation"],
+    "kannur.alakode": ["coconut-harvest", "tree-cleaning", "motor-repair", "grass-cutting"],
+    "kannur.kathiroor": ["regular-cleaning", "electrical-repair", "coconut-harvest"],
+    "kannur.koodali": ["coconut-harvest", "well-cleaning", "garden-maintenance"],
+    "kannur.peravoor": ["electrical-repair", "motor-repair", "coconut-harvest", "well-cleaning", "tree-cleaning"]
+  },
+  "priceOverrides": {
+    "kannur.kannur-corporation": { "regular-cleaning": 549, "deep-cleaning": 2799 },
+    "kannur.pinarayi": { "coconut-harvest": 350, "well-cleaning": 2200 },
+    "kannur.narath": { "coconut-harvest": 350 },
+    "kannur.mayyil": { "well-cleaning": 2200 }
+  }
+}

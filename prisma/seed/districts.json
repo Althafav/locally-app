@@ -1,0 +1,16 @@
+[
+  { "id": "kasaragod", "name": "Kasaragod", "nameMl": "കാസർകോട്", "isActive": false },
+  { "id": "kannur", "name": "Kannur", "nameMl": "കണ്ണൂർ", "isActive": true },
+  { "id": "wayanad", "name": "Wayanad", "nameMl": "വയനാട്", "isActive": false },
+  { "id": "kozhikode", "name": "Kozhikode", "nameMl": "കോഴിക്കോട്", "isActive": false },
+  { "id": "malappuram", "name": "Malappuram", "nameMl": "മലപ്പുറം", "isActive": false },
+  { "id": "palakkad", "name": "Palakkad", "nameMl": "പാലക്കാട്", "isActive": false },
+  { "id": "thrissur", "name": "Thrissur", "nameMl": "തൃശ്ശൂർ", "isActive": false },
+  { "id": "ernakulam", "name": "Ernakulam", "nameMl": "എറണാകുളം", "isActive": false },
+  { "id": "idukki", "name": "Idukki", "nameMl": "ഇടുക്കി", "isActive": false },
+  { "id": "kottayam", "name": "Kottayam", "nameMl": "കോട്ടയം", "isActive": false },
+  { "id": "alappuzha", "name": "Alappuzha", "nameMl": "ആലപ്പുഴ", "isActive": false },
+  { "id": "pathanamthitta", "name": "Pathanamthitta", "nameMl": "പത്തനംതിട്ട", "isActive": false },
+  { "id": "kollam", "name": "Kollam", "nameMl": "കൊല്ലം", "isActive": false },
+  { "id": "thiruvananthapuram", "name": "Thiruvananthapuram", "nameMl": "തിരുവനന്തപുരം", "isActive": false }
+]

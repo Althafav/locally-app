@@ -1,0 +1,172 @@
+// Locally — Prisma schema
+//
+// Runs on PostgreSQL (Prisma Postgres). DATABASE_URL is a postgres:// connection string.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Geography ────────────────────────────────────────────────
+
+model District {
+  id          String      @id // slug, e.g. "kannur"
+  name        String
+  nameMl      String
+  isActive    Boolean     @default(false)
+  sortOrder   Int         @default(0)
+  localBodies LocalBody[]
+}
+
+enum LocalBodyType {
+  CORPORATION
+  MUNICIPALITY
+  GRAMA_PANCHAYAT
+}
+
+model LocalBody {
+  id         String        @id // slug, e.g. "kannur.pinarayi"
+  districtId String
+  district   District      @relation(fields: [districtId], references: [id])
+  name       String
+  nameMl     String
+  type       LocalBodyType
+  blockName  String?
+  lat        Float // approximate centroid
+  lng        Float
+  isActive   Boolean       @default(true)
+
+  availability ServiceAvailability[]
+  users        User[]
+  interests    ServiceInterest[]
+  bookings     Booking[]
+
+  @@index([districtId])
+}
+
+// ─── Catalogue ────────────────────────────────────────────────
+
+model ServiceCategory {
+  id        String    @id // slug, e.g. "cleaning"
+  name      String
+  nameMl    String
+  icon      String // icon key, mapped to an SVG icon in components/ServiceIcon.tsx
+  sortOrder Int       @default(0)
+  services  Service[]
+}
+
+model Service {
+  id           String          @id // slug, e.g. "deep-cleaning"
+  categoryId   String
+  category     ServiceCategory @relation(fields: [categoryId], references: [id])
+  name         String
+  nameMl       String
+  description  String
+  inclusions   String          @default("") // newline-separated "what's included"
+  basePrice    Int // in whole rupees
+  durationMins Int
+  isActive     Boolean         @default(true)
+  sortOrder    Int             @default(0)
+
+  availability ServiceAvailability[]
+  interests    ServiceInterest[]
+  bookings     Booking[]
+
+  @@index([categoryId])
+}
+
+model ServiceAvailability {
+  id            String    @id @default(cuid())
+  serviceId     String
+  service       Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  localBodyId   String
+  localBody     LocalBody @relation(fields: [localBodyId], references: [id], onDelete: Cascade)
+  isAvailable   Boolean   @default(true)
+  priceOverride Int?
+
+  @@unique([serviceId, localBodyId])
+  @@index([localBodyId])
+}
+
+// ─── Users & auth ─────────────────────────────────────────────
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id          String     @id @default(cuid())
+  phone       String     @unique // E.164 without "+", e.g. "919876543210"
+  role        Role       @default(USER) // ADMIN is granted at login via ADMIN_PHONES
+  name        String?
+  email       String?
+  localBodyId String?
+  localBody   LocalBody? @relation(fields: [localBodyId], references: [id])
+  ward        String?
+  landmark    String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  interests ServiceInterest[]
+  bookings  Booking[]
+}
+
+model OtpRequest {
+  id        String   @id @default(cuid())
+  phone     String
+  codeHash  String
+  expiresAt DateTime
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([phone, createdAt])
+}
+
+// ─── Demand & bookings ────────────────────────────────────────
+
+// "Notify me" — launch-demand signal. serviceId = null means
+// "tell me when anything launches in this local body".
+model ServiceInterest {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  serviceId   String?
+  service     Service?  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  localBodyId String
+  localBody   LocalBody @relation(fields: [localBodyId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+
+  @@index([localBodyId, serviceId])
+  @@index([userId])
+}
+
+enum BookingStatus {
+  REQUESTED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model Booking {
+  id          String        @id @default(cuid())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id])
+  serviceId   String
+  service     Service       @relation(fields: [serviceId], references: [id])
+  localBodyId String
+  localBody   LocalBody     @relation(fields: [localBodyId], references: [id])
+  date        DateTime // service day (date only, stored at 00:00 IST as UTC)
+  slot        String // e.g. "10:00-12:00"
+  address     String
+  price       Int // price quoted at booking time
+  status      BookingStatus @default(REQUESTED)
+  createdAt   DateTime      @default(now())
+
+  @@index([userId, createdAt])
+}
